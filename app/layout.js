@@ -1,23 +1,57 @@
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { PerformanceProvider } from '@/components/usePerformance'
 import SmoothScroll from '@/components/SmoothScroll'
 import PerformanceToggle from '@/components/PerformanceToggle'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
-
 export const metadata = {
-  title: 'Portfolio | Aniket Pandey',
-  description: 'Full Stack Developer & UI/UX Enthusiast',
+  title: 'Aniket Pandey — Full-Stack Developer & AI Builder',
+  description:
+    'Full-stack developer specializing in AI-powered SaaS applications. Building with Next.js, TypeScript, PostgreSQL, and OpenAI. Open to opportunities.',
+  keywords: [
+    'Full Stack Developer',
+    'Next.js Developer',
+    'React Developer',
+    'AI Developer',
+    'SaaS Developer',
+    'Aniket Pandey',
+    'Frontend Developer',
+    'Node.js',
+  ],
+  authors: [{ name: 'Aniket Pandey', url: 'https://aniketpandey.dev' }],
+  openGraph: {
+    title: 'Aniket Pandey — Full-Stack Developer & AI Builder',
+    description:
+      'Building AI-powered web applications used in production. Expert in Next.js, TypeScript & PostgreSQL.',
+    url: 'https://aniketpandey.dev',
+    siteName: 'Aniket Pandey Portfolio',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Aniket Pandey — Full-Stack Developer',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Aniket Pandey — Full-Stack Developer & AI Builder',
+    description:
+      'Building AI-powered web applications. Next.js, TypeScript, PostgreSQL specialist.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-slate-950 text-white antialiased">
+    <html lang="en" className="scroll-smooth">
+      <body className="min-h-screen antialiased">
         <PerformanceProvider>
           <SmoothScroll>
             {children}

@@ -2,84 +2,166 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { FiMail, FiGithub, FiLinkedin, FiPhone } from 'react-icons/fi'
+import { MapPin, Calendar } from 'lucide-react'
+import { FiGithub, FiLinkedin, FiMail, FiPhone } from 'react-icons/fi'
 
 const socials = [
-  { icon: FiGithub, label: 'GitHub', href: 'https://github.com' },
-  { icon: FiLinkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
-  { icon: FiMail, label: 'Email', href: 'mailto:aad75p@gmail.com' },
-  { icon: FiPhone, label: 'Phone', href: 'tel:+916392517737' },
+  {
+    icon: FiGithub,
+    label: 'GitHub',
+    href: 'https://github.com/ani232003', // TODO: replace with your real GitHub URL
+    display: 'github.com/ani232003',
+  },
+  {
+    icon: FiLinkedin,
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/aniket-pandey23', // TODO: replace with your real LinkedIn URL
+    display: 'linkedin.com/in/aniket-pandey23',
+  },
+  {
+    icon: FiMail,
+    label: 'Email',
+    href: 'mailto:aniketpandey.in23@gmail.com',
+    display: 'aniketpandey.in23@gmail.com',
+  },
+  {
+    icon: FiPhone,
+    label: 'Phone',
+    href: 'tel:+916392517737',
+    display: '+91 6392517737',
+  },
 ]
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+  }),
+}
 
 export default function Contact() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
     <section
       ref={ref}
       id="contact-section"
-      className="min-h-screen flex items-center justify-center px-4 bg-slate-950"
+      className="py-28 px-6 relative overflow-hidden"
+      style={{ background: 'var(--bg-2)' }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-        className="text-center max-w-2xl"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-          Let&apos;s Work Together
-        </h2>
-        <p className="text-gray-400 text-lg mb-8">
-          I&apos;m always interested in hearing about new projects and opportunities.
-          Whether you have a question or just want to say hello, feel free to reach out!
-        </p>
+      <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-violet-600/[0.08] rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="flex justify-center gap-6 mb-12">
-          {socials.map((social, index) => (
+      <div className="max-w-4xl mx-auto relative z-10">
+
+        <motion.div
+          custom={0} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="mb-4 text-center"
+        >
+          <span
+            className="text-xs text-violet-400 uppercase tracking-[0.2em]"
+            style={{ fontFamily: 'JetBrains Mono, monospace' }}
+          >
+            04 / Get In Touch
+          </span>
+        </motion.div>
+
+        <motion.h2
+          custom={1} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="text-[clamp(36px,5vw,64px)] font-bold leading-tight mb-6 text-center"
+          style={{ fontFamily: 'Syne, sans-serif' }}
+        >
+          Let&apos;s Build Something{' '}
+          <span className="text-violet-400">Great</span>
+        </motion.h2>
+
+        <motion.p
+          custom={2} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="text-[#8888aa] text-lg leading-relaxed text-center mb-14 max-w-2xl mx-auto"
+          style={{ fontFamily: 'DM Sans, sans-serif' }}
+        >
+          I&apos;m open to full-time roles, freelance projects, and interesting collaborations.
+          Feel free to reach out — I respond within 24 hours.
+        </motion.p>
+
+        <motion.div
+          custom={3} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="grid md:grid-cols-2 gap-4 mb-12"
+        >
+          {socials.map((social, i) => (
             <motion.a
               key={social.label}
               href={social.href}
               target={social.label !== 'Email' && social.label !== 'Phone' ? '_blank' : undefined}
               rel={social.label !== 'Email' && social.label !== 'Phone' ? 'noopener noreferrer' : undefined}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="w-14 h-14 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:border-purple-400/30 flex items-center justify-center hover:scale-110 transition-all"
-              aria-label={social.label}
-              title={social.label}
+              custom={3 + i * 0.5} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+              className="group p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-violet-500/30 hover:bg-violet-500/5 transition-all duration-300"
             >
-              <social.icon className="w-6 h-6" />
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 group-hover:bg-violet-500/20 transition-colors">
+                  <social.icon className="w-5 h-5 text-violet-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p
+                    className="text-xs text-[#55556a] uppercase tracking-wider mb-1"
+                    style={{ fontFamily: 'JetBrains Mono, monospace' }}
+                  >
+                    {social.label}
+                  </p>
+                  <p className="text-white font-medium group-hover:text-violet-300 transition-colors text-sm truncate">
+                    {social.display}
+                  </p>
+                </div>
+              </div>
             </motion.a>
           ))}
-        </div>
+        </motion.div>
 
-        <motion.a
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          href="mailto:aad75p@gmail.com"
-          className="inline-block px-8 py-4 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+        <motion.div
+          custom={7} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="flex items-center justify-center gap-2 text-[#8888aa] mb-12"
         >
-          Get In Touch
-        </motion.a>
+          <MapPin className="w-4 h-4 shrink-0" />
+          <span className="text-sm">Kanpur, Uttar Pradesh, India</span>
+        </motion.div>
 
-        <div className="mt-12 space-y-2">
-          <p className="text-gray-400 text-sm">
-            📧 <a href="mailto:aad75p@gmail.com" className="hover:text-purple-400 transition-colors">aad75p@gmail.com</a>
-          </p>
-          <p className="text-gray-400 text-sm">
-            📱 <a href="tel:+916392517737" className="hover:text-purple-400 transition-colors">+91 6392517737</a>
-          </p>
-          <p className="text-gray-400 text-sm">
-            📍 Kanpur, Uttar Pradesh, India
-          </p>
-        </div>
+        <motion.div
+          custom={8} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="flex flex-wrap justify-center gap-4"
+        >
+          <a
+            href="mailto:aniketpandey.in23@gmail.com"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-violet-600 hover:bg-violet-500 text-white rounded-full font-semibold text-sm transition-all duration-200 hover:shadow-xl hover:shadow-violet-500/30"
+          >
+            <FiMail className="w-4 h-4" />
+            Send Me an Email
+          </a>
+          <a
+            href="/assests/Resume/Aniket-Pandey_Resume.pdf"
+            download
+            className="inline-flex items-center gap-3 px-8 py-4 border border-white/10 hover:border-violet-500/40 hover:bg-white/[0.04] text-white rounded-full font-semibold text-sm transition-all duration-200"
+          >
+            <Calendar className="w-4 h-4" />
+            Download Resume
+          </a>
+        </motion.div>
 
-        <p className="mt-12 text-sm text-gray-500">
-          © {new Date().getFullYear()} Aniket Pandey. Built with Next.js & Framer Motion
-        </p>
-      </motion.div>
+        <motion.div
+          custom={9} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="mt-20 pt-8 border-t border-white/[0.06] text-center"
+        >
+          <p className="text-sm text-[#55556a]">
+            © {new Date().getFullYear()} Aniket Pandey. Built with Next.js &amp; Framer Motion
+          </p>
+          <p className="text-xs text-[#55556a] mt-2">
+            Designed &amp; developed with attention to detail
+          </p>
+        </motion.div>
+
+      </div>
     </section>
   )
 }

@@ -2,216 +2,250 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Code2, Database, Zap, Download, ArrowRight } from 'lucide-react'
+import { Code2, Database, Zap, Download, ArrowUpRight } from 'lucide-react'
+
+const workPhilosophy = [
+  {
+    icon: '🎯',
+    title: 'Problem-First Development',
+    desc: 'I start by understanding the problem before writing code. Every feature I build has a clear reason to exist — not just something that looks good in a demo.',
+  },
+  {
+    icon: '🚀',
+    title: 'Full-Stack Mindset',
+    desc: 'I work across the entire stack — from building React UIs to designing PostgreSQL schemas and wiring up REST APIs. I own features end to end.',
+  },
+  {
+    icon: '⚡',
+    title: 'Performance Aware',
+    desc: 'I pay attention to load times, responsive design, and cross-browser compatibility from the start — not as a last-minute fix.',
+  },
+  {
+    icon: '🤖',
+    title: 'AI Integration',
+    desc: 'I\'ve integrated OpenAI, Gemini, and Claude APIs into production projects — building chatbots, knowledge base systems, and AI-generated insights.',
+  },
+]
 
 const skills = [
-{
-  icon: Code2,
-  title: 'Frontend Development',
-  description: 'Building responsive and interactive web applications with modern frameworks',
-  tags: ['React.js', 'Next.js', 'HTML/CSS', 'JavaScript', 'Tailwind CSS', 'Framer Motion'],
-},
-{
-  icon: Database,
-  title: 'Backend & Databases',
-  description: 'Building scalable backends with secure data management and optimization',
-  tags: ['Node.js', 'Express.js', 'PostgreSQL', 'MongoDB', 'Firebase', 'Prisma ORM'],
-},
-{
-  icon: Zap,
-  title: 'AI & APIs',
-  description: 'Integrating cutting-edge AI and third-party APIs for smart solutions',
-  tags: ['OpenAI API', 'Gemini', 'Claude', 'REST APIs', 'Authentication', 'WebSockets'],
-},
+  {
+    icon: Code2,
+    title: 'Frontend',
+    tags: ['React.js', 'Next.js', 'JavaScript', 'HTML/CSS', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+  },
+  {
+    icon: Database,
+    title: 'Backend & Data',
+    tags: ['Node.js', 'Express.js', 'PostgreSQL', 'MongoDB', 'Firebase', 'Prisma ORM'],
+  },
+  {
+    icon: Zap,
+    title: 'AI & Tools',
+    tags: ['OpenAI API', 'Gemini', 'Claude', 'REST APIs', 'Git', 'GitHub', 'Vercel', 'Python'],
+  },
 ]
 
-const stats = [
-{ label: 'Projects Built', value: '4+' },
-{ label: 'Technologies', value: '15+' },
-{ label: 'Years Learning', value: '2+' },
-]
-
-export default function About() {
-const ref = useRef(null)
-const isInView = useInView(ref, { once: true, margin: '-100px' })
-
-const handleDownloadResume = () => {
-  // Create a link element and trigger download
-  const link = document.createElement('a')
-    link.href = '/assests/Resume/Aniket-Pandey_Resume.pdf' 
-  link.download = 'Aniket-Pandey-Resume.pdf'
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+  }),
 }
 
-return (
-  <section ref={ref} className="min-h-screen py-20 px-4 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
-    {/* Background gradient orb */}
-    <div className="absolute top-0 right-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl -z-10" />
-    <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -z-10" />
+export default function About() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
 
-    <div className="max-w-6xl mx-auto relative z-10">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-20"
-      >
-        <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent">
-          About Me
-        </h2>
-        <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed mb-8">
-          I&apos;m a Full Stack Developer building AI-powered web applications using React and Next.js. 
-          Passionate about creating scalable systems, integrating modern APIs, and solving complex problems with elegant code.
-        </p>
-        
-        {/* Resume Download Button */}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleDownloadResume}
-          className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg font-semibold text-white transition-all duration-300 shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70"
+  return (
+    <section
+      ref={ref}
+      id="about-section"
+      className="py-28 px-6 relative overflow-hidden"
+      style={{ background: 'var(--bg-2)' }}
+    >
+      <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-violet-600/6 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
+
+        {/* Section label */}
+        <motion.div custom={0} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'} className="mb-4">
+          <span className="text-xs text-violet-400 uppercase tracking-[0.2em]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            02 / About
+          </span>
+        </motion.div>
+
+        {/* Headline */}
+        <motion.h2
+          custom={1} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="text-[clamp(36px,5vw,60px)] font-bold leading-tight mb-6"
+          style={{ fontFamily: 'Syne, sans-serif' }}
         >
-          <Download className="w-5 h-5" />
-          Download Resume
-          <ArrowRight className="w-4 h-4" />
-        </motion.button>
-      </motion.div>
+          I don&apos;t just write code —<br />
+          <span className="text-[#8888aa]">I build products.</span>
+        </motion.h2>
 
-      {/* Stats */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="grid md:grid-cols-3 gap-8 mb-20"
-      >
-        {stats.map((stat, idx) => (
-          <div key={idx} className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 text-center hover:border-purple-500/50 transition-colors">
-            <p className="text-3xl font-bold text-transparent bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text mb-2">
-              {stat.value}
-            </p>
-            <p className="text-gray-400 text-sm">{stat.label}</p>
-          </div>
-        ))}
-      </motion.div>
+        <motion.p
+          custom={2} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="text-[#8888aa] text-lg leading-relaxed max-w-2xl mb-14"
+          style={{ fontFamily: 'DM Sans, sans-serif' }}
+        >
+          Full-stack developer with hands-on experience building AI-powered SaaS applications,
+          client websites, and real-time web apps. I care about clean code, good UX, and
+          shipping things that actually work.
+        </motion.p>
 
-      {/* Skills Grid */}
-      <div className="grid md:grid-cols-3 gap-8 mb-20">
-        {skills.map((skill, index) => (
-          <motion.div
-            key={skill.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
-            className="group relative"
-          >
-            {/* Card Background with hover effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-blue-600/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur" />
-            
-            <div className="relative bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 group-hover:border-purple-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20">
-              <div className="mb-6 inline-block p-3 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-lg group-hover:from-purple-600/40 group-hover:to-blue-600/40 transition-all duration-300">
-                <skill.icon className="w-8 h-8 text-purple-400 group-hover:text-blue-400 transition-colors" />
-              </div>
-
-              <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 group-hover:bg-clip-text transition-all duration-300">
-                {skill.title}
+        {/* How I Work */}
+        <motion.div
+          custom={3} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-20"
+        >
+          {workPhilosophy.map((item, i) => (
+            <motion.div
+              key={item.title}
+              custom={3 + i * 0.5} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+              className="group p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-violet-500/30 hover:bg-violet-500/5 transition-all duration-300"
+            >
+              <span className="text-2xl mb-4 block">{item.icon}</span>
+              <h3 className="font-semibold text-base mb-2 text-white" style={{ fontFamily: 'Syne, sans-serif' }}>
+                {item.title}
               </h3>
-              
-              <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                {skill.description}
-              </p>
-              
+              <p className="text-[#8888aa] text-sm leading-relaxed">{item.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Skills */}
+        <motion.div
+          custom={7} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="grid md:grid-cols-3 gap-6 mb-20"
+        >
+          {skills.map((skill) => (
+            <div
+              key={skill.title}
+              className="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-violet-500/30 hover:bg-violet-500/[0.04] transition-all duration-300"
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <div className="p-2.5 rounded-xl bg-violet-500/15 border border-violet-500/20">
+                  <skill.icon className="w-5 h-5 text-violet-400" />
+                </div>
+                <h3 className="font-semibold" style={{ fontFamily: 'Syne, sans-serif' }}>{skill.title}</h3>
+              </div>
               <div className="flex flex-wrap gap-2">
                 {skill.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 bg-white/5 hover:bg-purple-500/20 rounded-full text-xs text-gray-300 hover:text-purple-300 transition-all duration-300 border border-transparent hover:border-purple-500/50"
+                    className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-xs text-[#8888aa] hover:text-violet-300 hover:border-violet-500/30 transition-colors"
+                    style={{ fontFamily: 'JetBrains Mono, monospace' }}
                   >
                     {tag}
                   </span>
                 ))}
               </div>
             </div>
-          </motion.div>
-        ))}
+          ))}
+        </motion.div>
+
+        {/* Experience & Education */}
+        <motion.div
+          custom={8} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="grid md:grid-cols-2 gap-6 mb-10"
+        >
+          {/* Experience */}
+          <div className="p-8 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-emerald-500/25 hover:bg-emerald-500/[0.03] transition-all duration-300">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="w-2 h-2 rounded-full bg-emerald-400" />
+              <span className="text-xs uppercase tracking-[0.15em] text-[#55556a]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+                Experience
+              </span>
+            </div>
+
+            <div className="mb-5">
+              <p className="text-lg font-semibold text-white" style={{ fontFamily: 'Syne, sans-serif' }}>
+                Full Stack Developer Intern
+              </p>
+              <div className="flex items-center gap-1 mt-1">
+                <p className="text-violet-400 text-sm">The WebPlant</p>
+                <span className="text-[#55556a] text-sm">, Delhi</span>
+              </div>
+              <p className="text-xs mt-1 text-[#55556a]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+                Dec 2025 – Apr 2026
+              </p>
+            </div>
+
+            <ul className="space-y-3 text-sm text-[#8888aa]">
+              {[
+                'Developed & optimized responsive web apps across 20+ client projects using React, Next.js & HubSpot CMS',
+                'Built reusable, modular components improving development speed and consistency across projects',
+                'Integrated CMS content with frontend interfaces for scalable, flexible web applications',
+                'Improved cross-browser compatibility and UX across all client deliverables',
+              ].map((bullet, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="text-violet-500 mt-0.5 shrink-0">→</span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Education */}
+          <div className="p-8 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-blue-500/25 hover:bg-blue-500/[0.03] transition-all duration-300">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="w-2 h-2 rounded-full bg-blue-400" />
+              <span className="text-xs uppercase tracking-[0.15em] text-[#55556a]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+                Education
+              </span>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-lg font-semibold text-white" style={{ fontFamily: 'Syne, sans-serif' }}>
+                Bachelor of Computer Applications
+              </p>
+              <p className="text-blue-400 text-sm mt-1">
+                University of Petroleum &amp; Energy Studies
+              </p>
+              <p className="text-xs mt-1 text-[#55556a]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+                2021 – 2024 · Dehradun
+              </p>
+            </div>
+
+            <div className="pt-5 border-t border-white/[0.06]">
+              <p className="text-xs uppercase tracking-[0.15em] text-[#55556a] mb-3" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+                Certification
+              </p>
+              <p className="font-semibold text-white" style={{ fontFamily: 'Syne, sans-serif' }}>
+                Full Stack Web Development
+              </p>
+              <p className="text-blue-400 text-sm mt-1">Coding Ninjas</p>
+              <p className="text-xs mt-1 text-[#55556a]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+                Feb 2023 – Feb 2024
+              </p>
+              <p className="text-[#8888aa] text-xs mt-2">
+                Generative AI · Frontend · Python · React Development
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Resume CTA */}
+        <motion.div
+          custom={9} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'}
+          className="flex justify-center"
+        >
+          <a
+            href="/assests/Resume/Aniket-Pandey_Resume.pdf"
+            download
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-white/[0.05] hover:bg-violet-500/15 border border-white/10 hover:border-violet-500/40 text-white rounded-full font-semibold text-sm transition-all duration-300"
+          >
+            <Download className="w-4 h-4" />
+            Download Full Resume
+            <span className="text-[#55556a] group-hover:text-violet-400 transition-colors">PDF</span>
+          </a>
+        </motion.div>
+
       </div>
-
-      {/* Experience & Education Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="grid md:grid-cols-2 gap-8"
-      >
-        {/* Experience Card */}
-        <div className="group relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-green-600/10 to-emerald-600/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur" />
-          
-          <div className="relative bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 group-hover:border-green-500/50 transition-all duration-300">
-            <h3 className="text-2xl font-bold mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-              Experience
-            </h3>
-            
-            <div className="mt-6 space-y-4">
-              <div>
-                <p className="text-lg font-semibold text-white">Full Stack Intern</p>
-                <p className="text-purple-400 font-medium">The WebPlant, Delhi</p>
-                <p className="text-sm text-gray-500 mt-1">December 2025 – April 2026</p>
-              </div>
-
-              <ul className="text-gray-400 text-sm space-y-2 mt-4">
-                <li className="flex gap-3">
-                  <span className="text-purple-400 mt-1">→</span>
-                  <span>Developed responsive web applications across 20+ client projects</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-purple-400 mt-1">→</span>
-                  <span>Built reusable components improving development consistency</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-purple-400 mt-1">→</span>
-                  <span>Integrated CMS content with frontend interfaces</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-purple-400 mt-1">→</span>
-                  <span>Enhanced cross-browser compatibility and UX</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Education Card */}
-        <div className="group relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-cyan-600/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur" />
-          
-          <div className="relative bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 group-hover:border-blue-500/50 transition-all duration-300">
-            <h3 className="text-2xl font-bold mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-              Education
-            </h3>
-
-            <div className="mt-6 space-y-6">
-              <div>
-                <p className="text-lg font-semibold text-white">Bachelor of Computer Applications</p>
-                <p className="text-blue-400 font-medium">University of Petroleum and Energy Studies</p>
-                <p className="text-sm text-gray-500 mt-1">2021 – 2024 | CGPA: 6/10</p>
-              </div>
-
-              <div className="pt-4 border-t border-white/10">
-                <p className="text-sm font-semibold text-white mb-3 uppercase tracking-wider">Certifications</p>
-                <p className="text-blue-400 font-medium text-sm">Full Stack Web Development</p>
-                <p className="text-sm text-gray-500 mt-1">Coding Ninjas (Feb 2023 – Feb 2024)</p>
-                <p className="text-xs text-gray-600 mt-2">Generative AI • Frontend • Python • React Development</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  </section>
-)
+    </section>
+  )
 }
