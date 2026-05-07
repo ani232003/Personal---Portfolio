@@ -140,7 +140,7 @@ export default function Contact() {
             Send Me an Email
           </a>
           <a
-            href="/assests/Resume/Aniket-Pandey_Resume.pdf"
+            href="/assests/Aniket-Pandey_Resume.pdf"
             download
             className="inline-flex items-center gap-3 px-8 py-4 border border-white/10 hover:border-violet-500/40 hover:bg-white/[0.04] text-white rounded-full font-semibold text-sm transition-all duration-200"
           >

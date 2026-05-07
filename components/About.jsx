@@ -235,7 +235,7 @@ export default function About() {
           className="flex justify-center"
         >
           <a
-            href="/assests/Resume/Aniket-Pandey_Resume.pdf"
+            href="/assests/Aniket-Pandey_Resume.pdf"
             download
             className="group inline-flex items-center gap-3 px-8 py-4 bg-white/[0.05] hover:bg-violet-500/15 border border-white/10 hover:border-violet-500/40 text-white rounded-full font-semibold text-sm transition-all duration-300"
           >

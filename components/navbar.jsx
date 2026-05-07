@@ -48,17 +48,18 @@ export default function Navbar() {
           </motion.a>
 
           <nav className="hidden md:flex items-center gap-1 bg-white/5 border border-white/[0.08] backdrop-blur-md rounded-full px-2 py-1.5">
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => scrollTo(link.href)}
-                className="px-5 py-1.5 text-sm text-[#8888aa] hover:text-white transition-colors rounded-full hover:bg-white/[0.08] font-medium"
-                style={{ fontFamily: 'DM Sans, sans-serif' }}
-              >
-                {link.label}
-              </button>
-            ))}
-          </nav>
+                      {navLinks.map((link) => (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          onClick={(e) => { e.preventDefault(); scrollTo(link.href) }}
+                          className="px-5 py-1.5 text-sm text-[#8888aa] hover:text-white transition-colors rounded-full hover:bg-white/[0.08] font-medium"
+                          style={{ fontFamily: 'DM Sans, sans-serif' }}
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </nav>
 
           <div className="hidden md:flex items-center gap-4">
             <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 rounded-full px-3 py-1.5">
@@ -111,7 +112,7 @@ export default function Navbar() {
               Open to work
             </div>
             <a
-              href="/assests/Resume/Aniket-Pandey_Resume.pdf"
+              href="/assests/Aniket-Pandey_Resume.pdf"
               download
               className="mt-2 w-full text-center px-4 py-3 bg-violet-600 text-white rounded-lg font-semibold text-sm"
             >

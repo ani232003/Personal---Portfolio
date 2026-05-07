@@ -2,6 +2,7 @@ import './globals.css'
 import { PerformanceProvider } from '@/components/usePerformance'
 import SmoothScroll from '@/components/SmoothScroll'
 import PerformanceToggle from '@/components/PerformanceToggle'
+import Script from 'next/script'
 
 export const metadata = {
   title: 'Aniket Pandey — Full-Stack Developer & AI Builder',
@@ -52,11 +53,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <script
-          src="https://ai-support-chat-seven.vercel.app/widget.js"
-          data-id="474a9a61-a80a-4770-a0d7-3fc22735f72a"
-          async>
-        </script>
+        <link rel="canonical" href="https://aniketpandey.dev" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Aniket Pandey" />
+        <meta name="robots" content="index, follow" />
       </head>
       <body className="min-h-screen antialiased">
         <PerformanceProvider>
@@ -65,6 +65,28 @@ export default function RootLayout({ children }) {
             <PerformanceToggle />
           </SmoothScroll>
         </PerformanceProvider>
+
+        <Script
+          src="https://ai-support-chat-seven.vercel.app/widget.js"
+          data-id="474a9a61-a80a-4770-a0d7-3fc22735f72a"
+          strategy="lazyOnload"
+        />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Aniket Pandey",
+            "url": "https://aniketpandey.dev",
+            "sameAs": [
+              "https://github.com/ani232003",
+              "https://www.linkedin.com/in/aniket-pandey23"
+            ],
+            "jobTitle": "Full-Stack Developer & AI Builder",
+            "description": "Full-stack developer specializing in AI-powered SaaS applications. Building with Next.js, TypeScript, PostgreSQL, and OpenAI. Open to opportunities."
+          }) }}
+        />
       </body>
     </html>
   )

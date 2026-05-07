@@ -27,8 +27,8 @@ const projects = [
     ],
     image: '/assests/Images/1.PNG',
     tech: ['Next.js 14', 'OpenAI API', 'PostgreSQL', 'Prisma', 'Tailwind', 'Auth.js'],
-    github: 'https://github.com/yourusername/replyai',
-    live: 'https://replyai.vercel.app',
+    github: 'https://github.com/ani232003/AI-SUPPORT-CHAT.git',
+    live: 'https://ai-support-chat-seven.vercel.app/',
   },
   {
     number: '02',
@@ -50,8 +50,8 @@ const projects = [
     ],
     image: '/assests/Images/Capture.PNG',
     tech: ['Next.js 14', 'Prisma', 'PostgreSQL', 'OpenAI', 'Chart.js', 'Cron'],
-    github: 'https://github.com/yourusername/ai-finance-platform',
-    live: 'https://finance-ai.vercel.app',
+    github: 'https://github.com/ani232003/AI-FINANCIAL-PLATFORM.git',
+    live: 'https://ai-financial-platform-3i9i.vercel.app/',
   },
   {
     number: '03',
@@ -73,8 +73,8 @@ const projects = [
     ],
     image: '/assests/Images/nova.PNG',
     tech: ['React.js', 'OpenAI API', 'Markdown', 'Prism.js', 'LocalStorage'],
-    github: 'https://github.com/yourusername/novatalk',
-    live: 'https://novatalk.vercel.app',
+    github: 'https://github.com/ani232003/Gemi.git',
+    live: 'https://gemi-ten.vercel.app/',
   },
   {
     number: '04',
@@ -96,8 +96,8 @@ const projects = [
     ],
     image: '/assests/Images/burger.PNG',
     tech: ['React.js', 'Firebase', 'Firestore', 'Tailwind CSS', 'React Router'],
-    github: 'https://github.com/yourusername/food-ordering-app',
-    live: 'https://food-app.vercel.app',
+    github: 'https://github.com/ani232003/Quick-Bite-.git',
+    live: 'https://burgerbite-smoky.vercel.app/',
   },
 ]
 
