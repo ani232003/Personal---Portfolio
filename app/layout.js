@@ -51,6 +51,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <script
+          src="https://ai-support-chat-seven.vercel.app/widget.js"
+          data-id="474a9a61-a80a-4770-a0d7-3fc22735f72a"
+          async
+        ></script>
+      </head>
       <body className="min-h-screen antialiased">
         <PerformanceProvider>
           <SmoothScroll>
